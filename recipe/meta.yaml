@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 56f1d5b67003ac1e7e96bf13fb4586160799ead41e520217cf18e9758e5decfe
+  patches:  # [win]
+    - windows_fixes.diff  # [win]
 
 build:
   skip: True  # [not win and py!=39]

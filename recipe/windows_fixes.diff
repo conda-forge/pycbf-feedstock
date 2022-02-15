@@ -1,0 +1,231 @@
+diff -r -x .git pycbf_clean/cbflib/examples/testhdf5.c pycbf/cbflib/examples/testhdf5.c
+1124d1123
+< 		if (CBF_SUCCESS==error) TEST(!cmp(val,valBuf,length
+1126c1125,1127
+<                                           ,cmp_params
+---
+> 		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length));
+> #else
+> 		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length, cmp_params));
+1128d1128
+<                                           ));
+diff -r -x .git pycbf_clean/cbflib/src/cbf_context.c pycbf/cbflib/src/cbf_context.c
+264d263
+< #include <unistd.h>
+266a266
+>   #include <sys/stat.h>
+269a270
+>   #include <unistd.h>
+diff -r -x .git pycbf_clean/cbflib/src/cbf_hdf5.c pycbf/cbflib/src/cbf_hdf5.c
+285c285,296
+<     
+---
+> 
+> // cl.exe doesn't support variable length arrays.
+> // If using this, then redefine to use a windows-only function to do the allocation.
+> // If nothing is defined, then it will fall through to using VLA's directly
+> #if _MSC_VER
+>     #include <malloc.h>
+>     #define ALLOC_VLA(atype, name, size)    atype *name = (atype*)_alloca(sizeof(atype)*(size))
+> #else
+>     // Compiler supports VLAs
+>     #define ALLOC_VLA(atype, name, size)    atype name[size];
+> #endif
+> 
+293a305,309
+> #ifndef NAN
+> #define NAN (0./0.)
+> #endif
+> 
+> 
+3595c3611
+<                     double data = 0./0.;
+---
+>                     double data = NAN;
+3648c3664
+<                 double data = 0./0.;
+---
+>             double data = NAN;
+3712c3728
+<                 double data = 0./0.;
+---
+>             double data = NAN;
+4602c4618
+<             double buf[3] = {0./0.};
+---
+>             double buf[3] = { NAN };
+11812,11813c11828,11829
+<             
+<             double oldvec[dimension];
+---
+> 
+>             ALLOC_VLA(double, oldvec, dimension);
+19065c19081
+<                             double value = 0., factor = 0./0.;
+---
+>                             double value = 0., factor = NAN;
+19115c19131
+<                             double value = 0., factor = 0./0.;
+---
+>                             double value = 0., factor = NAN;
+19225c19241
+<                                     double value = 0., factor = 0./0.;
+---
+>                                     double value = 0., factor = NAN;
+19267c19283
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+19420c19436
+<                                     double value = 0., factor = 0./0.;
+---
+>                                     double value = 0., factor = NAN;
+19509c19525
+<                                     double value = 0., factor = 0./0.;
+---
+>                                     double value = 0., factor = NAN;
+19702c19718
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+19735c19751
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+20046c20062
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+20097c20113
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+20192c20208
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+21017c21033
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+21045c21061
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+21095c21111
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+21124c21140
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+21153c21169
+<                                 double value = 0., factor = 0./0.;
+---
+>                                 double value = 0., factor = NAN;
+22272c22288
+<                     double elem_size[] = {0./0., 0./0.,0./0.};
+---
+>                     double elem_size[] = {NAN, NAN,NAN};
+22315c22331
+<                                 hsize_t dims[rank];
+---
+>                                 ALLOC_VLA(hsize_t, dims, rank);
+22330,22331c22346,22347
+<                                     hsize_t off[rank];
+<                                     hsize_t cnt[rank];
+---
+>                                     ALLOC_VLA(hsize_t, off, rank);
+>                                     ALLOC_VLA(hsize_t, cnt, rank);
+22334c22350
+<                                     double factor = 0./0.;
+---
+>                                     double factor = NAN;
+22398c22414
+<                                 double factor = 0./0.;
+---
+>                                 double factor = NAN;
+23177c23193
+<                                         double factor = 0./0.;
+---
+>                                         double factor = NAN;
+24490c24506
+<                     data = 0./0.;
+---
+>                     data = NAN;
+27968c27984
+<             double pixel_x = 0./0., pixel_y = 0./0.;
+---
+>             double pixel_x = NAN, pixel_y = NAN;
+27989,27990c28005,28006
+<                         double beam_x = 0./0., beam_y = 0./0.;
+<                         double detector_distance = 0./0.;
+---
+>                         double beam_x = NAN, beam_y = NAN;
+>                         double detector_distance = NAN;
+28232c28248
+<                                 double num = 0./0.;
+---
+>                                 double num = NAN;
+28251c28267
+<                                 double num = 0./0.;
+---
+>                                 double num = NAN;
+28264c28280
+<                                 double num = 0./0.;
+---
+>                                 double num = NAN;
+28278c28294
+<                                 double num = 0./0.;
+---
+>                                 double num = NAN;
+28304c28320
+<                                 double num = 0./0.;
+---
+>                                 double num = NAN;
+28325c28341
+<                                 double num_x = 0./0., num_y = 0./0.;
+---
+>                                 double num_x = NAN, num_y = NAN;
+28344c28360
+<                                 double num = 0./0.;
+---
+>                                 double num = NAN;
+28550c28566
+<                             double vbuf[3] = {0./0.};
+---
+>                             double vbuf[3] = {NAN};
+28679c28695
+<                         double vbuf[3] = {0./0.};
+---
+>                         double vbuf[3] = {NAN};
+28736c28752
+<                         double vbuf[3] = {0./0.};
+---
+>                         double vbuf[3] = {NAN};
+29074c29090
+<                     char element[type_size+1];
+---
+>                     ALLOC_VLA(char, element, type_size + 1);
+diff -r -x .git pycbf_clean/cbflib/src/cbf_minicbf_header.c pycbf/cbflib/src/cbf_minicbf_header.c
+260a261,271
+> 
+> // cl.exe doesn't support variable length arrays.
+> // If using this, then redefine to use a windows-only function to do the allocation.
+> // If nothing is defined, then it will fall through to using VLA's directly
+> #if _MSC_VER
+>     #include <malloc.h>
+>     #define ALLOC_VLA(atype, name, size)    atype *name = (atype*)_alloca(sizeof(atype)*(size))
+> #else
+>     // Compiler supports VLAs
+>     #define ALLOC_VLA(atype, name, size)    atype name[size];
+> #endif
+479c490
+<             const char * direction[rank];
+---
+>             ALLOC_VLA(const char*, direction, rank);
+894c905
+<             double psizes[rank];
+---
+>             ALLOC_VLA(double, psizes, rank);
