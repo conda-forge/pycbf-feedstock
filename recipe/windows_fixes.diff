@@ -460,3 +460,13 @@ diff -ru -x .git pycbf_clean/cbflib/src/cbf_minicbf_header.c pycbf/cbflib/src/cb
              
              if (!cbf_get_array_section_pixel_sizes(cbf,array_id,rank,psizes)) {
                  
+diff -ru -x .git pycbf_clean/cbflib/src/cbf_codes.c pycbf/cbflib/src/cbf_codes.c
+--- a/cbflib/src/cbf_codes.c	2022-02-15 19:28:08.000000000 +0000
++++ b/cbflib/src/cbf_codes.c	2022-02-16 21:02:19.000000000 +0000
+@@ -313,6 +313,7 @@
+ #include <string.h>
+ #include <sys/stat.h>
+ #include <wchar.h>
++#include <sys/types.h>
+
+     /* Check a 24-character base-64 MD5 digest */
