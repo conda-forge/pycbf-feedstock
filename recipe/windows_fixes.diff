@@ -1,6 +1,6 @@
 diff -ru -x .git pycbf_clean/cbflib/examples/testhdf5.c pycbf/cbflib/examples/testhdf5.c
---- pycbf_clean/cbflib/examples/testhdf5.c	2022-02-15 19:28:31.000000000 +0000
-+++ pycbf/cbflib/examples/testhdf5.c	2022-02-15 19:27:27.000000000 +0000
+--- a/cbflib/examples/testhdf5.c	2022-02-15 19:28:31.000000000 +0000
++++ b/cbflib/examples/testhdf5.c	2022-02-15 19:27:27.000000000 +0000
 @@ -1121,11 +1121,11 @@
  	TEST_CBF_PASS(cbf_H5Dinsert(dset,off,std,cnt,buf,val,type));
  	{/* post-conditions */
@@ -17,8 +17,8 @@ diff -ru -x .git pycbf_clean/cbflib/examples/testhdf5.c pycbf/cbflib/examples/te
      
  	return r;
 diff -ru -x .git pycbf_clean/cbflib/src/cbf_context.c pycbf/cbflib/src/cbf_context.c
---- pycbf_clean/cbflib/src/cbf_context.c	2022-02-15 19:28:31.000000000 +0000
-+++ pycbf/cbflib/src/cbf_context.c	2022-02-15 19:32:22.000000000 +0000
+--- a/cbflib/src/cbf_context.c	2022-02-15 19:28:31.000000000 +0000
++++ b/cbflib/src/cbf_context.c	2022-02-15 19:32:22.000000000 +0000
 @@ -261,12 +261,13 @@
  #include <stdlib.h>
  #include <string.h>
@@ -35,8 +35,8 @@ diff -ru -x .git pycbf_clean/cbflib/src/cbf_context.c pycbf/cbflib/src/cbf_conte
    #include <sys/stat.h>
    #include <sys/types.h>
 diff -ru -x .git pycbf_clean/cbflib/src/cbf_hdf5.c pycbf/cbflib/src/cbf_hdf5.c
---- pycbf_clean/cbflib/src/cbf_hdf5.c	2022-02-15 19:28:31.000000000 +0000
-+++ pycbf/cbflib/src/cbf_hdf5.c	2022-02-15 19:27:27.000000000 +0000
+--- a/cbflib/src/cbf_hdf5.c	2022-02-15 19:28:31.000000000 +0000
++++ b/cbflib/src/cbf_hdf5.c	2022-02-15 19:27:27.000000000 +0000
 @@ -282,7 +282,18 @@
  #include <math.h>
  #include <assert.h>
@@ -440,8 +440,8 @@ diff -ru -x .git pycbf_clean/cbflib/src/cbf_hdf5.c pycbf/cbflib/src/cbf_hdf5.c
                      size_t ii, jj;;
  
 diff -ru -x .git pycbf_clean/cbflib/src/cbf_minicbf_header.c pycbf/cbflib/src/cbf_minicbf_header.c
---- pycbf_clean/cbflib/src/cbf_minicbf_header.c	2022-02-15 19:28:31.000000000 +0000
-+++ pycbf/cbflib/src/cbf_minicbf_header.c	2022-02-15 19:27:27.000000000 +0000
+--- a/cbflib/src/cbf_minicbf_header.c	2022-02-15 19:28:31.000000000 +0000
++++ b/cbflib/src/cbf_minicbf_header.c	2022-02-15 19:27:27.000000000 +0000
 @@ -258,6 +258,17 @@
      
  #include "cbf_minicbf_header.h"
