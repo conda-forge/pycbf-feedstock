@@ -1,21 +1,3 @@
-diff -ru -x .git pycbf_clean/cbflib/examples/testhdf5.c pycbf/cbflib/examples/testhdf5.c
---- a/cbflib/examples/testhdf5.c	2022-02-15 19:28:31.000000000 +0000
-+++ b/cbflib/examples/testhdf5.c	2022-02-15 19:27:27.000000000 +0000
-@@ -1121,11 +1121,11 @@
- 	TEST_CBF_PASS(cbf_H5Dinsert(dset,off,std,cnt,buf,val,type));
- 	{/* post-conditions */
- 		CBF_CALL(cbf_H5Dread2(dset,off,std,cnt,valBuf,type));
--		if (CBF_SUCCESS==error) TEST(!cmp(val,valBuf,length
- #ifdef CBF_USE_ULP
--                                          ,cmp_params
-+		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length));
-+#else
-+		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length, cmp_params));
- #endif
--                                          ));
- 	}
-     
- 	return r;
 diff -ru -x .git pycbf_clean/cbflib/src/cbf_context.c pycbf/cbflib/src/cbf_context.c
 --- a/cbflib/src/cbf_context.c	2022-02-15 19:28:31.000000000 +0000
 +++ b/cbflib/src/cbf_context.c	2022-02-15 19:32:22.000000000 +0000
