@@ -1,6 +1,20 @@
-diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_codes.c pycbf/cbflib/src/cbf_codes.c
---- a/cbflib/src/cbf_codes.c	2022-02-15 19:28:08.000000000 +0000
-+++ b/cbflib/src/cbf_codes.c	2022-03-22 12:44:05.000000000 +0000
+diff -ru -x '*.f90' -x '*.py' pycbf-0.9.6.3/cbflib/include/cbf.h pycbf-0.9.6.3-with_changes/cbflib/include/cbf.h
+--- a/cbflib/include/cbf.h	2021-05-26 18:05:10.000000000 +0100
++++ b/cbflib/include/cbf.h	2022-03-22 13:33:11.000000000 +0000
+@@ -250,8 +250,6 @@
+ #ifndef CBF_H
+ #define CBF_H
+ 
+-// #include "hdf5.h"
+-
+ #ifdef __cplusplus
+ 
+ extern "C" {
+Only in pycbf-0.9.6.3-with_changes/cbflib/src: cbf.i
+Only in pycbf-0.9.6.3-with_changes/cbflib/src: cbf.stx.y
+diff -ru -x '*.f90' -x '*.py' pycbf-0.9.6.3/cbflib/src/cbf_codes.c pycbf-0.9.6.3-with_changes/cbflib/src/cbf_codes.c
+--- a/cbflib/src/cbf_codes.c	2021-05-14 15:29:02.000000000 +0100
++++ b/cbflib/src/cbf_codes.c	2022-03-22 13:33:27.000000000 +0000
 @@ -313,6 +313,7 @@
  #include <string.h>
  #include <sys/stat.h>
@@ -9,9 +23,9 @@ diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_codes.c pycbf/cbflib/src/cb
  
      /* Check a 24-character base-64 MD5 digest */
      
-diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_context.c pycbf/cbflib/src/cbf_context.c
---- a/cbflib/src/cbf_context.c	2022-02-15 19:28:31.000000000 +0000
-+++ b/cbflib/src/cbf_context.c	2022-02-15 19:32:22.000000000 +0000
+diff -ru -x '*.f90' -x '*.py' pycbf-0.9.6.3/cbflib/src/cbf_context.c pycbf-0.9.6.3-with_changes/cbflib/src/cbf_context.c
+--- a/cbflib/src/cbf_context.c	2021-05-26 18:02:08.000000000 +0100
++++ b/cbflib/src/cbf_context.c	2022-03-22 13:33:27.000000000 +0000
 @@ -261,12 +261,13 @@
  #include <stdlib.h>
  #include <string.h>
@@ -27,9 +41,9 @@ diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_context.c pycbf/cbflib/src/
    #include <errno.h>
    #include <sys/stat.h>
    #include <sys/types.h>
-diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_hdf5.c pycbf/cbflib/src/cbf_hdf5.c
---- a/cbflib/src/cbf_hdf5.c	2022-02-15 19:28:31.000000000 +0000
-+++ b/cbflib/src/cbf_hdf5.c	2022-02-15 19:27:27.000000000 +0000
+diff -ru -x '*.f90' -x '*.py' pycbf-0.9.6.3/cbflib/src/cbf_hdf5.c pycbf-0.9.6.3-with_changes/cbflib/src/cbf_hdf5.c
+--- a/cbflib/src/cbf_hdf5.c	2021-05-26 18:02:08.000000000 +0100
++++ b/cbflib/src/cbf_hdf5.c	2022-03-22 13:33:27.000000000 +0000
 @@ -282,7 +282,18 @@
  #include <math.h>
  #include <assert.h>
@@ -432,9 +446,9 @@ diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_hdf5.c pycbf/cbflib/src/cbf
  
                      size_t ii, jj;;
  
-diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_minicbf_header.c pycbf/cbflib/src/cbf_minicbf_header.c
---- a/cbflib/src/cbf_minicbf_header.c	2022-02-15 19:28:31.000000000 +0000
-+++ b/cbflib/src/cbf_minicbf_header.c	2022-02-15 19:27:27.000000000 +0000
+diff -ru -x '*.f90' -x '*.py' pycbf-0.9.6.3/cbflib/src/cbf_minicbf_header.c pycbf-0.9.6.3-with_changes/cbflib/src/cbf_minicbf_header.c
+--- a/cbflib/src/cbf_minicbf_header.c	2021-05-14 15:29:02.000000000 +0100
++++ b/cbflib/src/cbf_minicbf_header.c	2022-03-22 13:33:27.000000000 +0000
 @@ -258,6 +258,17 @@
      
  #include "cbf_minicbf_header.h"
@@ -471,63 +485,3 @@ diff -ru -x .git -x cbf.h pycbf_clean/cbflib/src/cbf_minicbf_header.c pycbf/cbfl
              
              if (!cbf_get_array_section_pixel_sizes(cbf,array_id,rank,psizes)) {
                  
-Only in pycbf/newsfragments: 20.feature
-diff -ru -x .git -x cbf.h pycbf_clean/pyproject.toml pycbf/pyproject.toml
---- a/pyproject.toml	2022-02-15 19:28:08.000000000 +0000
-+++ b/pyproject.toml	2022-03-22 13:11:06.000000000 +0000
-@@ -23,6 +23,7 @@
-     {path = "LICENCE.txt", format = "sdist"},
-     {path = "cbflib/src/*.c", format = "sdist"},
-     {path = "cbflib/include/*.h", format = "sdist"},
-+    {path = "src/pycbf/py.typed"},
- ]
- 
- 
-Only in pycbf/src/pycbf: img.pyi
-Only in pycbf/src/pycbf: py.typed
-diff -ru -x .git -x cbf.h pycbf_clean/tests/test_1.py pycbf/tests/test_1.py
---- a/tests/test_1.py	2022-02-15 19:28:08.000000000 +0000
-+++ b/tests/test_1.py	2022-03-22 13:11:06.000000000 +0000
-@@ -51,19 +51,6 @@
-                     print(type(s))
-                     print(dir(s))
-                     print(len(s))
--                    try:
--                        import Numeric
--
--                        d = Numeric.fromstring(s, Numeric.UInt32)
--                        # Hard wired Unsigned Int32
--                        print(d.shape)
--                        print(d[0:10], d[d.shape[0] / 2], d[-1])
--                        d = Numeric.reshape(d, (2300, 2300))
--                    #                   from matplotlib import pylab
--                    #                   pylab.imshow(d,vmin=0,vmax=1000)
--                    #                   pylab.show()
--                    except ImportError:
--                        print("You need to get Numeric and matplotlib to see the data")
-                 else:
-                     value = object.get_value()
-                     print("Val:", value, i)
-diff -ru -x .git -x cbf.h pycbf_clean/tests/test_4.py pycbf/tests/test_4.py
---- a/tests/test_4.py	2022-02-15 19:28:08.000000000 +0000
-+++ b/tests/test_4.py	2022-03-22 13:11:06.000000000 +0000
-@@ -105,19 +105,6 @@
-                         dimslow,
-                         padding,
-                     )
--                    try:
--                        import Numeric
--
--                        d = Numeric.fromstring(s, Numeric.UInt32)
--                        # Hard wired Unsigned Int32
--                        print(d.shape)
--                        print(d[0:10], d[d.shape[0] / 2], d[-1])
--                        d = Numeric.reshape(d, (dimfast, dimmid))
--                    #                   from matplotlib import pylab
--                    #                   pylab.imshow(d,vmin=0,vmax=1000)
--                    #                   pylab.show()
--                    except ImportError:
--                        print("You need to get Numeric and matplotlib to see the data")
-                 else:
-                     value = object.get_value()
-                     newobject.set_value(value)
