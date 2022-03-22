@@ -1,21 +1,3 @@
-diff -ru -x .git pycbf_clean/cbflib/examples/testhdf5.c pycbf/cbflib/examples/testhdf5.c
---- a/cbflib/examples/testhdf5.c	2022-02-15 19:28:31.000000000 +0000
-+++ b/cbflib/examples/testhdf5.c	2022-02-15 19:27:27.000000000 +0000
-@@ -1121,11 +1121,11 @@
- 	TEST_CBF_PASS(cbf_H5Dinsert(dset,off,std,cnt,buf,val,type));
- 	{/* post-conditions */
- 		CBF_CALL(cbf_H5Dread2(dset,off,std,cnt,valBuf,type));
--		if (CBF_SUCCESS==error) TEST(!cmp(val,valBuf,length
- #ifdef CBF_USE_ULP
--                                          ,cmp_params
-+		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length));
-+#else
-+		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length, cmp_params));
- #endif
--                                          ));
- 	}
-     
- 	return r;
 diff -ru -x .git pycbf_clean/cbflib/include/cbf.h pycbf/cbflib/include/cbf.h
 --- a/cbflib/include/cbf.h	2022-02-15 19:28:08.000000000 +0000
 +++ b/cbflib/include/cbf.h	2022-02-15 19:30:12.000000000 +0000
@@ -30,16 +12,7 @@ diff -ru -x .git pycbf_clean/cbflib/include/cbf.h pycbf/cbflib/include/cbf.h
  extern "C" {
 diff -ru -x .git pycbf_clean/cbflib/src/cbf_codes.c pycbf/cbflib/src/cbf_codes.c
 --- a/cbflib/src/cbf_codes.c	2022-02-15 19:28:08.000000000 +0000
-+++ b/cbflib/src/cbf_codes.c	2022-02-16 21:02:19.000000000 +0000
-@@ -66,7 +66,7 @@
-  *                                                                    *
-  * This software                                                      *
-  * -------------                                                      *
-- * The term Ôthis softwareÕ, as used in these Notices, refers to      *
-+ * The term ï¿½this softwareï¿½, as used in these Notices, refers to      *
-  * those portions of the software package CBFlib that were created by *
-  * employees of the Stanford Linear Accelerator Center, Stanford      *
-  * University.                                                        *
++++ b/cbflib/src/cbf_codes.c	2022-03-22 12:44:05.000000000 +0000
 @@ -313,6 +313,7 @@
  #include <string.h>
  #include <sys/stat.h>
