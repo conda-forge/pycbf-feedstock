@@ -1,3 +1,53 @@
+diff -ru -x .git pycbf_clean/cbflib/examples/testhdf5.c pycbf/cbflib/examples/testhdf5.c
+--- a/cbflib/examples/testhdf5.c	2022-02-15 19:28:31.000000000 +0000
++++ b/cbflib/examples/testhdf5.c	2022-02-15 19:27:27.000000000 +0000
+@@ -1121,11 +1121,11 @@
+ 	TEST_CBF_PASS(cbf_H5Dinsert(dset,off,std,cnt,buf,val,type));
+ 	{/* post-conditions */
+ 		CBF_CALL(cbf_H5Dread2(dset,off,std,cnt,valBuf,type));
+-		if (CBF_SUCCESS==error) TEST(!cmp(val,valBuf,length
+ #ifdef CBF_USE_ULP
+-                                          ,cmp_params
++		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length));
++#else
++		if (CBF_SUCCESS == error) TEST(!cmp(val, valBuf, length, cmp_params));
+ #endif
+-                                          ));
+ 	}
+     
+ 	return r;
+diff -ru -x .git pycbf_clean/cbflib/include/cbf.h pycbf/cbflib/include/cbf.h
+--- a/cbflib/include/cbf.h	2022-02-15 19:28:08.000000000 +0000
++++ b/cbflib/include/cbf.h	2022-02-15 19:30:12.000000000 +0000
+@@ -250,8 +250,6 @@
+ #ifndef CBF_H
+ #define CBF_H
+ 
+-#include "hdf5.h"
+-
+ #ifdef __cplusplus
+ 
+ extern "C" {
+diff -ru -x .git pycbf_clean/cbflib/src/cbf_codes.c pycbf/cbflib/src/cbf_codes.c
+--- a/cbflib/src/cbf_codes.c	2022-02-15 19:28:08.000000000 +0000
++++ b/cbflib/src/cbf_codes.c	2022-02-16 21:02:19.000000000 +0000
+@@ -66,7 +66,7 @@
+  *                                                                    *
+  * This software                                                      *
+  * -------------                                                      *
+- * The term Ôthis softwareÕ, as used in these Notices, refers to      *
++ * The term ï¿½this softwareï¿½, as used in these Notices, refers to      *
+  * those portions of the software package CBFlib that were created by *
+  * employees of the Stanford Linear Accelerator Center, Stanford      *
+  * University.                                                        *
+@@ -313,6 +313,7 @@
+ #include <string.h>
+ #include <sys/stat.h>
+ #include <wchar.h>
++#include <sys/types.h>
+ 
+     /* Check a 24-character base-64 MD5 digest */
+     
 diff -ru -x .git pycbf_clean/cbflib/src/cbf_context.c pycbf/cbflib/src/cbf_context.c
 --- a/cbflib/src/cbf_context.c	2022-02-15 19:28:31.000000000 +0000
 +++ b/cbflib/src/cbf_context.c	2022-02-15 19:32:22.000000000 +0000
@@ -460,13 +510,3 @@ diff -ru -x .git pycbf_clean/cbflib/src/cbf_minicbf_header.c pycbf/cbflib/src/cb
              
              if (!cbf_get_array_section_pixel_sizes(cbf,array_id,rank,psizes)) {
                  
-diff -ru -x .git pycbf_clean/cbflib/src/cbf_codes.c pycbf/cbflib/src/cbf_codes.c
---- a/cbflib/src/cbf_codes.c	2022-02-15 19:28:08.000000000 +0000
-+++ b/cbflib/src/cbf_codes.c	2022-02-16 21:02:19.000000000 +0000
-@@ -313,6 +313,7 @@
- #include <string.h>
- #include <sys/stat.h>
- #include <wchar.h>
-+#include <sys/types.h>
-
-     /* Check a 24-character base-64 MD5 digest */
