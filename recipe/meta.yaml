@@ -1,5 +1,5 @@
 {% set name = "pycbf" %}
-{% set version = "0.9.6.3" %}
+{% set version = "0.9.6.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 56f1d5b67003ac1e7e96bf13fb4586160799ead41e520217cf18e9758e5decfe
+  sha256: ddfb64b9b7bf9f7e8be15667a09ac6e0daa3d4215e4aa29aec6eba02990624f9
 
 build:
-  skip: True  # [win]
-  number: 1
+  skip: true  # [win]
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
