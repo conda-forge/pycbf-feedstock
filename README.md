@@ -7,11 +7,15 @@ Package license: LGPL-2.1-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pycbf-feedstock/blob/main/LICENSE.txt)
 
-Summary: An API for CBF/imgCIF Crystallographic Binary Files
+Summary: A Python API for reading CBF/imgCIF Crystallographic Binary Files, from Paul J Ellis and Herbert J Bernstein.
 
 Development: https://github.com/dials/pycbf
 
-pycbf is a Python library for reading CBF formatted files.
+Documentation: http://www.bernstein-plus-sons.com/software/CBF/doc/CBFlib.html
+
+CBFlib is a library from from Paul J Ellis and Herbert J Bernstein for
+reading CBF/imgCIF crystallographic binary files. This is the python
+parts of that library, split off and built separately.
 
 
 Current build status
