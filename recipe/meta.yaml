@@ -23,7 +23,7 @@ requirements:
     - cython <3
     - python
     - pip
-    - poetry-core
+    - poetry-core >=1,<1.5
   run:
     - python
     - numpy >=1.17
