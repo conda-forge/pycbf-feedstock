@@ -1,16 +1,16 @@
 {% set name = "pycbf" %}
-{% set version = "0.9.6.5" %}
+{% set version = "0.9.6.7" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7fd23a79b40ec74cbc6829946ba6fe9eff6b4b3bda932e4ebce82a953299aeb4
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 981bc5d537e4dd578ab5f3d579042676c9f9abe24609b96aca59f8933a75b4e6
 
 build:
-  number: 4
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -19,6 +19,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - cython <3                              # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - cython <3
     - python
